@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.frontendjavafx.controllers.gestor.EditarEspacoController"
+            prefWidth="400" prefHeight="550">
+
+    <center>
+        <VBox spacing="15" alignment="CENTER">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <Label text="Editar Espaço Desportivo" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+            <TextField fx:id="txtLote" promptText="Lote"/>
+            <TextField fx:id="txtCapacidade" promptText="Capacidade"/>
+            <TextField fx:id="txtPrecoHora" promptText="Preço por Hora"/>
+            <TextField fx:id="txtHoraAbertura" promptText="Hora de Abertura (ex: 08:00)"/>
+            <TextField fx:id="txtHoraFecho" promptText="Hora de Fecho (ex: 22:00)"/>
+
+            <ComboBox fx:id="comboTipoEspaco" promptText="Escolher Tipo de Espaço" prefWidth="300"/>
+
+            <Button text="Guardar Alterações" onAction="#guardarAlteracoes" prefWidth="200"/>
+        </VBox>
+    </center>
+
+</BorderPane>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.frontendjavafx.controllers.gestor.RelatoriosController"
+            stylesheets="@styles/relatorios.css">
+
+    <!-- TOPO -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20" prefHeight="60" styleClass="top-bar">
+            <padding><Insets top="10" bottom="10" left="30" right="30"/></padding>
+
+            <HBox spacing="20" alignment="CENTER_LEFT">
+                <ImageView fitWidth="40" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/squad_logo.png"/>
+                    </image>
+                </ImageView>
+
+                <Hyperlink text="Página Inicial" fx:id="btnPaginaInicial" styleClass="top-link"/>
+                <Hyperlink text="Espaços" fx:id="btnEspacosTopo" styleClass="top-link"/>
+                <Hyperlink text="Pagamentos" fx:id="btnPagamentosTopo" styleClass="top-link"/>
+                <Hyperlink text="Relatórios" fx:id="btnRelatoriosTopo" styleClass="top-link"/>
+            </HBox>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <HBox spacing="10" alignment="CENTER_RIGHT">
+                <Label text="Bem-vindo, Bixoman!" styleClass="top-label"/>
+                <Hyperlink text="Logout" onAction="#logout" styleClass="top-link"/>
+            </HBox>
+        </HBox>
+    </top>
+
+    <!-- CENTRO -->
+    <center>
+        <VBox alignment="TOP_CENTER" spacing="20" style="-fx-padding: 40 30 30 30;">
+
+            <Label text="Relatórios de Ocupação e Faturação" styleClass="titulo"/>
+
+            <TableView fx:id="tabelaRelatorios" prefHeight="400" styleClass="table-view">
+                <columns>
+                    <TableColumn text="Nome do Espaço" prefWidth="180"/>
+                    <TableColumn text="Data" prefWidth="120"/>
+                    <TableColumn text="Nº Reservas" prefWidth="120"/>
+                    <TableColumn text="Total de Horas" prefWidth="140"/>
+                    <TableColumn text="Receita (€)" prefWidth="120"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+
+</BorderPane>

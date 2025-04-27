@@ -1,0 +1,71 @@
+.top-bar {
+    -fx-background-color: transparent;
+}
+
+.top-link {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-underline: false;
+    -fx-cursor: hand;
+}
+
+.top-link:hover {
+    -fx-underline: true;
+}
+
+.top-label {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+.main-content {
+    -fx-padding: 100 30 50 30;
+}
+
+.main-title {
+    -fx-font-size: 46px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #8b0000;
+}
+
+.main-subtitle {
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+}
+
+.card {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-padding: 20 30;
+    -fx-spacing: 10;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 3);
+}
+
+.card:hover {
+    -fx-translate-y: -5;
+}
+
+.card-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: darkred;
+}
+
+.card-text {
+    -fx-font-size: 16px;
+    -fx-text-fill: #333333;
+}
+
+.card-button {
+    -fx-background-color: transparent;
+    -fx-border-color: darkred;
+    -fx-text-fill: darkred;
+    -fx-border-radius: 6;
+    -fx-padding: 6 20;
+    -fx-cursor: hand;
+}
+
+.card-button:hover {
+    -fx-background-color: darkred;
+    -fx-text-fill: white;
+}

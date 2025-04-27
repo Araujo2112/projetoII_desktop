@@ -1,0 +1,47 @@
+.top-bar {
+    -fx-background-color: transparent;
+}
+
+.top-link {
+    -fx-text-fill: white;
+    -fx-underline: false;
+    -fx-font-size: 14px;
+}
+
+.top-link:hover {
+    -fx-underline: true;
+}
+
+.top-label {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+.titulo {
+    -fx-font-size: 36px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #8b0000;
+}
+
+.table-view {
+    -fx-background-color: white;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-padding: 10px;
+}
+
+.botao-aprovar {
+    -fx-background-color: green;
+    -fx-text-fill: white;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-padding: 6 20;
+}
+
+.botao-rejeitar {
+    -fx-background-color: red;
+    -fx-text-fill: white;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-padding: 6 20;
+}

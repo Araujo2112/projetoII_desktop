@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.frontendjavafx.controllers.gestor.EspacosController"
+            stylesheets="@styles/espacos.css">
+
+    <!-- TOPO -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20" prefHeight="60" styleClass="top-bar">
+            <padding><Insets top="10" bottom="10" left="30" right="30"/></padding>
+
+            <HBox spacing="20" alignment="CENTER_LEFT">
+                <ImageView fitWidth="40" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/squad_logo.png"/>
+                    </image>
+                </ImageView>
+
+                <Hyperlink text="Página Inicial" fx:id="btnPaginaInicial" onAction="#abrirDashboard" styleClass="hyperlink-topo"/>
+                <Hyperlink text="Espaços" fx:id="btnEspacosTopo" onAction="#abrirEspacos" styleClass="hyperlink-topo"/>
+                <Hyperlink text="Pagamentos" fx:id="btnPagamentosTopo" onAction="#abrirPagamentos" styleClass="hyperlink-topo"/>
+                <Hyperlink text="Relatórios" fx:id="btnRelatoriosTopo" onAction="#abrirRelatorios" styleClass="hyperlink-topo"/>
+            </HBox>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <HBox spacing="10" alignment="CENTER_RIGHT">
+                <Label text="Bem-vindo, Bixoman!" styleClass="top-label"/>
+                <Hyperlink text="Logout" onAction="#logout" styleClass="hyperlink-topo"/>
+            </HBox>
+        </HBox>
+    </top>
+
+    <!-- CENTRO -->
+    <center>
+        <VBox alignment="TOP_CENTER" spacing="20" style="-fx-padding: 40 30 30 30;">
+
+            <Label text="Espaços Desportivos" styleClass="titulo"/>
+
+            <HBox alignment="TOP_RIGHT">
+                <Button text="Criar Espaço" onAction="#criarEspaco" styleClass="botao-criar"/>
+            </HBox>
+
+            <TableView fx:id="tabelaEspacos" prefHeight="400" styleClass="table-view">
+                <columns>
+                    <TableColumn fx:id="colunaLote" text="Nome do Espaço" prefWidth="160"/>
+                    <TableColumn fx:id="colunaCapacidade" text="Capacidade Máxima" prefWidth="160"/>
+                    <TableColumn fx:id="colunaTipoEspaco" text="Tipo de Espaço" prefWidth="160"/>
+                    <TableColumn fx:id="colunaPrecoHora" text="Preço/Hora (€)" prefWidth="120"/>
+                    <TableColumn fx:id="colunaHoraAbertura" text="Horário Abertura" prefWidth="140"/>
+                    <TableColumn fx:id="colunaHoraFecho" text="Horário Fecho" prefWidth="140"/>
+                    <TableColumn fx:id="colunaAcoes" text="Ações" prefWidth="150"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+
+</BorderPane>

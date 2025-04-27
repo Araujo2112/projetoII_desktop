@@ -1,0 +1,36 @@
+.root {
+    -fx-background-color: linear-gradient(to bottom, black, darkred);
+}
+
+/* Topo */
+.top-bar {
+    -fx-background-color: transparent;
+}
+
+.top-link {
+    -fx-text-fill: white;
+    -fx-underline: false;
+    -fx-font-size: 14px;
+}
+
+.top-link:hover {
+    -fx-underline: true;
+}
+
+.top-label {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+/* Conteúdo */
+.titulo {
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-text-fill: darkred;
+}
+
+.table-view {
+    -fx-background-color: white;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+}
