@@ -14,7 +14,7 @@ import java.util.List;
 
 public class TipoUsuarioService {
 
-    private static final String BASE_URL = "http://localhost:8080/tipos-usuarios";
+    private static final String BASE_URL = "http://localhost:8080/tipos-usuarios"; // ATENÇÃO: "tipos-usuarios"
     private final HttpClient client;
     private final Gson gson;
 
@@ -31,6 +31,10 @@ public class TipoUsuarioService {
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
+        if (response.statusCode() != 200) {
+            throw new IOException("Erro ao obter todos os tipos de utilizador: " + response.statusCode());
+        }
+
         Type listType = new TypeToken<List<TipoUsuario>>(){}.getType();
         return gson.fromJson(response.body(), listType);
     }
@@ -42,6 +46,11 @@ public class TipoUsuarioService {
                 .build();
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        if (response.statusCode() != 200) {
+            throw new IOException("Tipo de utilizador não encontrado: " + response.statusCode());
+        }
+
         return gson.fromJson(response.body(), TipoUsuario.class);
     }
 
@@ -55,6 +64,11 @@ public class TipoUsuarioService {
                 .build();
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        if (response.statusCode() != 201) {
+            throw new IOException("Erro ao criar tipo de utilizador: " + response.statusCode());
+        }
+
         return gson.fromJson(response.body(), TipoUsuario.class);
     }
 
@@ -68,6 +82,11 @@ public class TipoUsuarioService {
                 .build();
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        if (response.statusCode() != 200) {
+            throw new IOException("Erro ao atualizar tipo de utilizador: " + response.statusCode());
+        }
+
         return gson.fromJson(response.body(), TipoUsuario.class);
     }
 
@@ -77,6 +96,11 @@ public class TipoUsuarioService {
                 .DELETE()
                 .build();
 
-        client.send(request, HttpResponse.BodyHandlers.discarding());
+        HttpResponse<Void> response = client.send(request, HttpResponse.BodyHandlers.discarding());
+
+        if (response.statusCode() != 204) {
+            throw new IOException("Erro ao eliminar tipo de utilizador: " + response.statusCode());
+        }
     }
+
 }

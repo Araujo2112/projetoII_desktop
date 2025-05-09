@@ -1,5 +1,6 @@
 package com.example.frontendjavafx.service;
 
+import com.example.frontendjavafx.dto.UsuarioRequestDTO;
 import com.example.frontendjavafx.model.Usuario;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -46,7 +47,8 @@ public class UsuarioService {
     }
 
     public Usuario createUsuario(Usuario usuario) throws IOException, InterruptedException {
-        String json = gson.toJson(usuario);
+        UsuarioRequestDTO dto = new UsuarioRequestDTO(usuario); // <-- transforma para DTO
+        String json = gson.toJson(dto);
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(BASE_URL))
@@ -55,8 +57,14 @@ public class UsuarioService {
                 .build();
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        if (response.statusCode() != 201) {
+            throw new IOException("Erro ao criar utilizador: " + response.statusCode());
+        }
+
         return gson.fromJson(response.body(), Usuario.class);
     }
+
 
     public Usuario updateUsuario(Integer id, Usuario usuario) throws IOException, InterruptedException {
         String json = gson.toJson(usuario);

@@ -38,46 +38,28 @@
 
     <!-- LADO DIREITO -->
     <center>
-        <VBox alignment="CENTER" spacing="15">
+        <VBox alignment="CENTER" spacing="10">
             <padding>
-                <Insets top="60" left="100" right="100" bottom="60"/>
+                <Insets top="30" left="100" right="100" bottom="30"/>
             </padding>
 
             <Label text="Criar uma conta"
                    style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
 
-            <TextField fx:id="nameField" promptText="Inserir o seu primeiro e último nome" maxWidth="360"/>
-            <TextField fx:id="emailField" promptText="Inserir o seu email" maxWidth="360"/>
-            <PasswordField fx:id="passwordField" promptText="Inserir a password" maxWidth="360"/>
+            <TextField fx:id="nameField" promptText="Nome completo" maxWidth="360"/>
+            <TextField fx:id="telField" promptText="Telefone" maxWidth="360"/>
+            <TextField fx:id="nifField" promptText="NIF" maxWidth="360"/>
+            <TextField fx:id="ruaField" promptText="Rua" maxWidth="360"/>
+            <TextField fx:id="nPortaField" promptText="Número da Porta" maxWidth="360"/>
+            <TextField fx:id="codPostalField" promptText="Código Postal (ex: 4750-052)" maxWidth="360"/>
+            <TextField fx:id="localidadeField" promptText="Localidade do Código Postal" maxWidth="360"/>
+            <TextField fx:id="emailField" promptText="Email" maxWidth="360"/>
+            <PasswordField fx:id="passwordField" promptText="Password" maxWidth="360"/>
 
-            <Button text="Criar conta"
+            <Button text="Criar Conta"
                     onAction="#criarConta"
                     style="-fx-background-color: #0066ff; -fx-text-fill: white; -fx-font-size: 14px;"
                     maxWidth="360"/>
-
-            <Button graphicTextGap="10" maxWidth="360"
-                    style="-fx-background-color: #ffffff; -fx-border-color: #d9d9d9; -fx-font-size: 14px;">
-                <graphic>
-                    <ImageView fitHeight="18" preserveRatio="true">
-                        <image>
-                            <Image url="@images/google_icon.png"/>
-                        </image>
-                    </ImageView>
-                </graphic>
-                <text>Continuar com Google</text>
-            </Button>
-
-            <Button graphicTextGap="10" maxWidth="360"
-                    style="-fx-background-color: #4267B2; -fx-text-fill: white; -fx-font-size: 14px;">
-                <graphic>
-                    <ImageView fitHeight="18" preserveRatio="true">
-                        <image>
-                            <Image url="@images/facebook_icon.png"/>
-                        </image>
-                    </ImageView>
-                </graphic>
-                <text>Continuar com Facebook</text>
-            </Button>
 
             <HBox alignment="CENTER" spacing="5">
                 <Label text="Já tens uma conta?" style="-fx-font-size: 12px;"/>

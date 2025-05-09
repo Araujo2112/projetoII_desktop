@@ -11,4 +11,7 @@ module com.example.frontendjavafx {
     opens com.example.frontendjavafx.controllers to javafx.fxml;
     opens com.example.frontendjavafx.utils to javafx.fxml;
     opens com.example.frontendjavafx.controllers.gestor to javafx.fxml;
+
+    // ✅ Esta linha é a que resolve o teu problema:
+    opens com.example.frontendjavafx.dto to com.google.gson;
 }
