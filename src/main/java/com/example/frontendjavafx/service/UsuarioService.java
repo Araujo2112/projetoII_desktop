@@ -2,8 +2,14 @@ package com.example.frontendjavafx.service;
 
 import com.example.frontendjavafx.dto.UsuarioRequestDTO;
 import com.example.frontendjavafx.model.Usuario;
+import com.example.frontendjavafx.utils.LocalDateAdapter;
+import com.example.frontendjavafx.utils.LocalTimeAdapter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
+import com.google.gson.GsonBuilder;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -21,7 +27,10 @@ public class UsuarioService {
 
     public UsuarioService() {
         this.client = HttpClient.newHttpClient();
-        this.gson = new Gson();
+        this.gson = new GsonBuilder()
+                .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
+                .registerTypeAdapter(LocalTime.class, new LocalTimeAdapter())
+                .create();
     }
 
     public List<Usuario> getAllUsuarios() throws IOException, InterruptedException {

@@ -10,7 +10,8 @@ public class Pagamento {
     private TipoEstado estado;
     private Reserva reserva;
 
-    public Pagamento() {}
+    public Pagamento() {
+    }
 
     public Pagamento(Integer idPagamento, LocalDate dtPagamento, TipoPagamento tipoPagamento, Usuario usuario, TipoEstado estado, Reserva reserva) {
         this.idPagamento = idPagamento;

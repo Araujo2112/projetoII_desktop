@@ -2,11 +2,6 @@
     -fx-background-color: linear-gradient(to bottom, black, darkred);
 }
 
-/* Topo */
-.top-bar {
-    -fx-background-color: transparent;
-}
-
 .top-link {
     -fx-text-fill: white;
     -fx-underline: false;
@@ -14,7 +9,7 @@
 }
 
 .top-link:hover {
-    -fx-underline: true;
+    -fx-text-fill: darkred;
 }
 
 .top-label {
@@ -22,15 +17,40 @@
     -fx-font-size: 14px;
 }
 
-/* Conteúdo */
 .titulo {
-    -fx-font-size: 30px;
+    -fx-font-size: 28px;
+    -fx-text-fill: #8b0000;
     -fx-font-weight: bold;
-    -fx-text-fill: darkred;
+}
+
+.botao-criar {
+    -fx-background-color: darkred;
+    -fx-text-fill: white;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-padding: 8 16;
+    -fx-font-weight: bold;
 }
 
 .table-view {
-    -fx-background-color: white;
-    -fx-border-radius: 8px;
-    -fx-background-radius: 8px;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+}
+
+.btn-ver {
+    -fx-background-color: #1e90ff;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-padding: 4 12;
+}
+
+.btn-apagar {
+    -fx-background-color: #dc143c;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-padding: 4 12;
 }

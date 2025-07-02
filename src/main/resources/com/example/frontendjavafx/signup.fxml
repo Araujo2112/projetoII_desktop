@@ -6,16 +6,18 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx"
+<AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.frontendjavafx.controllers.SignUpController"
             style="-fx-background-color: white;">
 
-    <!-- LADO ESQUERDO -->
-    <left>
+    <HBox spacing="0" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
+          AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+
+        <!-- LADO ESQUERDO -->
         <VBox spacing="40" alignment="TOP_LEFT"
               style="-fx-background-color: linear-gradient(to bottom, #3e0101, #000000);"
-              prefWidth="500">
+              prefWidth="500" VBox.vgrow="ALWAYS">
             <padding>
                 <Insets top="60" left="50" right="50" bottom="60"/>
             </padding>
@@ -34,11 +36,9 @@
                    wrapText="true"
                    style="-fx-text-fill: white; -fx-font-size: 20px;" />
         </VBox>
-    </left>
 
-    <!-- LADO DIREITO -->
-    <center>
-        <VBox alignment="CENTER" spacing="10">
+        <!-- LADO DIREITO -->
+        <VBox alignment="CENTER" spacing="10" HBox.hgrow="ALWAYS">
             <padding>
                 <Insets top="30" left="100" right="100" bottom="30"/>
             </padding>
@@ -66,5 +66,5 @@
                 <Hyperlink text="Login" onAction="#goToLogin" style="-fx-font-size: 12px;"/>
             </HBox>
         </VBox>
-    </center>
-</BorderPane>
+    </HBox>
+</AnchorPane>

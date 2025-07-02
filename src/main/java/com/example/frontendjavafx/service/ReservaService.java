@@ -1,7 +1,10 @@
 package com.example.frontendjavafx.service;
 
 import com.example.frontendjavafx.model.Reserva;
+import com.example.frontendjavafx.utils.LocalDateAdapter;
+import com.example.frontendjavafx.utils.LocalTimeAdapter;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
@@ -10,6 +13,8 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 public class ReservaService {
@@ -20,7 +25,10 @@ public class ReservaService {
 
     public ReservaService() {
         this.client = HttpClient.newHttpClient();
-        this.gson = new Gson();
+        this.gson = new GsonBuilder()
+                .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
+                .registerTypeAdapter(LocalTime.class, new LocalTimeAdapter())
+                .create();
     }
 
     public List<Reserva> getAllReservas() throws IOException, InterruptedException {
@@ -60,6 +68,8 @@ public class ReservaService {
 
     public Reserva updateReserva(Integer id, Reserva reserva) throws IOException, InterruptedException {
         String json = gson.toJson(reserva);
+
+        System.out.println("JSON enviado: " + json);
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(BASE_URL + "/" + id))

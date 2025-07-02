@@ -11,9 +11,11 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         stage = primaryStage;
+
         Scene splashScene = new Scene(FXMLLoader.load(getClass().getResource("/com/example/frontendjavafx/splash.fxml")));
-        stage.setMaximized(true);
+
         stage.setScene(splashScene);
+        stage.setMaximized(true);
         stage.setTitle("SQUAD BOSS");
         stage.show();
     }

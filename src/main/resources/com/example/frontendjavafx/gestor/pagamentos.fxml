@@ -47,11 +47,11 @@
 
             <TableView fx:id="tabelaPagamentos" prefHeight="400" styleClass="table-view">
                 <columns>
-                    <TableColumn text="Cliente" prefWidth="150"/>
-                    <TableColumn text="Espaço" prefWidth="150"/>
-                    <TableColumn text="Data" prefWidth="120"/>
-                    <TableColumn text="Valor (€)" prefWidth="100"/>
-                    <TableColumn text="Estado" prefWidth="120"/>
+                    <TableColumn fx:id="colunaCliente" text="Cliente" prefWidth="150"/>
+                    <TableColumn fx:id="colunaEspaco" text="Espaço" prefWidth="150"/>
+                    <TableColumn fx:id="colunaData" text="Data" prefWidth="120"/>
+                    <TableColumn fx:id="colunaValor" text="Valor (€)" prefWidth="100"/>
+                    <TableColumn fx:id="colunaEstado" text="Estado" prefWidth="120"/>
                     <TableColumn fx:id="colunaAcoes" text="Ações" prefWidth="180"/>
                 </columns>
             </TableView>

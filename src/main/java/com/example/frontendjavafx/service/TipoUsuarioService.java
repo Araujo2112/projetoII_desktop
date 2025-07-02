@@ -1,7 +1,10 @@
 package com.example.frontendjavafx.service;
 
 import com.example.frontendjavafx.model.TipoUsuario;
+import com.example.frontendjavafx.utils.LocalDateAdapter;
+import com.example.frontendjavafx.utils.LocalTimeAdapter;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
@@ -10,6 +13,8 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 public class TipoUsuarioService {
@@ -20,7 +25,10 @@ public class TipoUsuarioService {
 
     public TipoUsuarioService() {
         this.client = HttpClient.newHttpClient();
-        this.gson = new Gson();
+        this.gson = new GsonBuilder()
+                .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
+                .registerTypeAdapter(LocalTime.class, new LocalTimeAdapter())
+                .create();
     }
 
     public List<TipoUsuario> getAllTipoUsuarios() throws IOException, InterruptedException {

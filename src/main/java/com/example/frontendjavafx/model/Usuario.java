@@ -27,8 +27,6 @@ public class Usuario {
         this.password = password;
     }
 
-    // Getters e Setters
-
     public Integer getIdUsuario() { return idUsuario; }
     public void setIdUsuario(Integer idUsuario) { this.idUsuario = idUsuario; }
 
