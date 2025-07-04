@@ -3,6 +3,7 @@ module com.example.frontendjavafx {
     requires javafx.fxml;
     requires java.net.http;
     requires com.google.gson;
+    requires java.desktop;
 
     requires com.fasterxml.jackson.core;
     requires com.fasterxml.jackson.annotation;

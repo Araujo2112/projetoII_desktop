@@ -15,11 +15,12 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
+import java.awt.Desktop;
 import java.lang.reflect.Type;
+import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.net.URI;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -27,10 +28,11 @@ import java.util.List;
 public class RelatoriosController {
 
     @FXML private TableView<Relatorio> tabelaRelatorios;
-    @FXML private TableColumn<Relatorio, Long> colId;
+    @FXML private TableColumn<Relatorio, Integer> colId;
     @FXML private TableColumn<Relatorio, String> colDataCriacao;
     @FXML private TableColumn<Relatorio, String> colTipo;
     @FXML private TableColumn<Relatorio, Void> colAcoes;
+
     @FXML private DatePicker dataInicioPicker;
     @FXML private DatePicker dataFimPicker;
 
@@ -52,6 +54,16 @@ public class RelatoriosController {
         carregarRelatorios();
     }
 
+    private void abrirPDF(Integer id) {
+        try {
+            String url = "http://localhost:8080/relatorios/download/" + id;
+            java.awt.Desktop.getDesktop().browse(new URI(url));
+        } catch (Exception e) {
+            e.printStackTrace();
+            mostrarAlerta(Alert.AlertType.ERROR, "Erro", "Não foi possível abrir o PDF.");
+        }
+    }
+
     private void configurarTabela() {
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colDataCriacao.setCellValueFactory(new PropertyValueFactory<>("dataCriacaoFormatada"));
@@ -68,14 +80,12 @@ public class RelatoriosController {
 
                 btnVer.setOnAction(event -> {
                     Relatorio rel = getTableView().getItems().get(getIndex());
-                    System.out.println("Abrir PDF do relatório: " + rel.getCaminhoPdf());
-                    // abrirPDF(rel.getCaminhoPdf());
+                    abrirPDF(rel.getId());
                 });
 
                 btnApagar.setOnAction(event -> {
                     Relatorio rel = getTableView().getItems().get(getIndex());
-                    System.out.println("Eliminar relatório: " + rel.getId());
-                    // apagarRelatorio(rel);
+                    eliminarRelatorio(rel.getId());
                 });
 
                 hbox.setStyle("-fx-alignment: center");
@@ -111,8 +121,11 @@ public class RelatoriosController {
                             Type listType = new TypeToken<List<Relatorio>>() {}.getType();
                             List<Relatorio> relatorios = gson.fromJson(json, listType);
 
-                            listaRelatorios.clear();
-                            listaRelatorios.addAll(relatorios);
+                            Platform.runLater(() -> {
+                                listaRelatorios.clear();
+                                listaRelatorios.addAll(relatorios);
+                            });
+
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -120,11 +133,6 @@ public class RelatoriosController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    @FXML
-    private void logout() {
-        SceneManager.switchScene("login.fxml");
     }
 
     @FXML
@@ -137,9 +145,9 @@ public class RelatoriosController {
             return;
         }
 
-        try {
-            String url = String.format("http://localhost:8080/relatorios/faturacao?de=%s&ate=%s", inicio, fim);
+        String url = String.format("http://localhost:8080/relatorios/faturacao?de=%s&ate=%s", inicio, fim);
 
+        try {
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(url))
@@ -161,6 +169,31 @@ public class RelatoriosController {
         }
     }
 
+    private void eliminarRelatorio(Integer id) {
+        String url = "http://localhost:8080/relatorios/" + id;
+
+        try {
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(url))
+                    .DELETE()
+                    .build();
+
+            client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+                    .thenAccept(response -> {
+                        if (response.statusCode() == 204) {
+                            mostrarAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Relatório eliminado com sucesso.");
+                            carregarRelatorios();
+                        } else {
+                            mostrarAlerta(Alert.AlertType.ERROR, "Erro", "Erro ao eliminar relatório.");
+                        }
+                    });
+        } catch (Exception e) {
+            e.printStackTrace();
+            mostrarAlerta(Alert.AlertType.ERROR, "Erro", "Erro ao comunicar com o servidor.");
+        }
+    }
+
     private void mostrarAlerta(Alert.AlertType tipo, String titulo, String msg) {
         Platform.runLater(() -> {
             Alert alert = new Alert(tipo);
@@ -172,13 +205,12 @@ public class RelatoriosController {
     }
 
     @FXML
-    private void verRelatorio() {
-        System.out.println("Botão 'Ver' clicado fora da tabela (se existir)");
+    private void logout() {
+        SceneManager.switchScene("login.fxml");
     }
 
     @FXML
     private void eliminarRelatorio() {
-        System.out.println("Botão 'Eliminar' clicado fora da tabela (se existir)");
+        System.out.println("Botão 'Eliminar' clicado fora da tabela");
     }
-
 }
