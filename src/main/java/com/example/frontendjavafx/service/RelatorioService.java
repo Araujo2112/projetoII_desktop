@@ -1,7 +1,6 @@
 package com.example.frontendjavafx.service;
 
 import com.example.frontendjavafx.model.Relatorio;
-import com.example.frontendjavafx.model.TipoRelatorio;
 import com.example.frontendjavafx.utils.LocalDateAdapter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -15,7 +14,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class RelatorioService {
-    private static final String BASE_URL = "http://localhost:8080/relatorios";
+    private static final String BASE_URL = "http://localhost:8080/api/relatorios";
     private final HttpClient client;
     private final Gson gson;
 
@@ -33,42 +32,27 @@ public class RelatorioService {
                 .build();
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        if (response.statusCode() != 200) {
+            throw new RuntimeException("Erro ao buscar relatórios: " + response.statusCode());
+        }
+
         Type listType = new TypeToken<List<Relatorio>>(){}.getType();
         return gson.fromJson(response.body(), listType);
     }
 
-    public Relatorio getById(Integer id) throws IOException, InterruptedException {
+    public void gerarFaturacao(LocalDate de, LocalDate ate) throws IOException, InterruptedException {
+        String url = BASE_URL + "/faturacao?de=" + de + "&ate=" + ate;
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(BASE_URL + "/" + id))
-                .GET()
+                .uri(URI.create(url))
+                .POST(HttpRequest.BodyPublishers.noBody())
                 .build();
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        return gson.fromJson(response.body(), Relatorio.class);
-    }
 
-    public Relatorio create(Relatorio relatorio) throws IOException, InterruptedException {
-        String json = gson.toJson(relatorio);
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(BASE_URL))
-                .header("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofString(json))
-                .build();
-
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        return gson.fromJson(response.body(), Relatorio.class);
-    }
-
-    public Relatorio update(Integer id, Relatorio relatorio) throws IOException, InterruptedException {
-        String json = gson.toJson(relatorio);
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(BASE_URL + "/" + id))
-                .header("Content-Type", "application/json")
-                .PUT(HttpRequest.BodyPublishers.ofString(json))
-                .build();
-
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        return gson.fromJson(response.body(), Relatorio.class);
+        if (response.statusCode() != 200) {
+            throw new RuntimeException("Erro ao gerar relatório: " + response.body());
+        }
     }
 
     public void delete(Integer id) throws IOException, InterruptedException {
@@ -77,6 +61,10 @@ public class RelatorioService {
                 .DELETE()
                 .build();
 
-        client.send(request, HttpResponse.BodyHandlers.discarding());
+        HttpResponse<Void> response = client.send(request, HttpResponse.BodyHandlers.discarding());
+
+        if (response.statusCode() != 204) {
+            throw new RuntimeException("Erro ao eliminar relatório.");
+        }
     }
 }

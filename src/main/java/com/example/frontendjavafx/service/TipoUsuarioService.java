@@ -19,7 +19,7 @@ import java.util.List;
 
 public class TipoUsuarioService {
 
-    private static final String BASE_URL = "http://localhost:8080/tipos-usuarios"; // ATENÇÃO: "tipos-usuarios"
+    private static final String BASE_URL = "http://localhost:8080/api/tipos-usuarios";
     private final HttpClient client;
     private final Gson gson;
 

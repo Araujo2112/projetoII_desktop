@@ -19,7 +19,7 @@ import java.util.List;
 
 public class ReservaService {
 
-    private static final String BASE_URL = "http://localhost:8080/reservas";
+    private static final String BASE_URL = "http://localhost:8080/api/reservas";
     private final HttpClient client;
     private final Gson gson;
 

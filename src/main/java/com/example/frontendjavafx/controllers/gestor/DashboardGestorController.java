@@ -20,12 +20,10 @@ public class DashboardGestorController {
     public void initialize() {
         System.out.println("Dashboard do Gestor carregado!");
 
-        // Botões dos cards
         btnEspacos.setOnAction(e -> SceneManager.switchScene("gestor/espacos.fxml"));
         btnPagamentos.setOnAction(e -> SceneManager.switchScene("gestor/pagamentos.fxml"));
         btnRelatorios.setOnAction(e -> SceneManager.switchScene("gestor/relatorios.fxml"));
 
-        // Botões da barra de topo
         btnPaginaInicial.setOnAction(e -> SceneManager.switchScene("gestor/dashboard_gestor.fxml"));
         btnRelatoriosTopo.setOnAction(e -> SceneManager.switchScene("gestor/relatorios.fxml"));
         btnEspacosTopo.setOnAction(e -> SceneManager.switchScene("gestor/espacos.fxml"));

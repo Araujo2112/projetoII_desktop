@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="root" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.frontendjavafx.controllers.manutencao.MarcarManutencaoController"
+            stylesheets="@styles/marcar_manutencao.css">
+
+    <top>
+        <HBox spacing="20" alignment="CENTER_LEFT" style="-fx-padding: 20;" BorderPane.alignment="CENTER">
+            <ImageView fitWidth="40" preserveRatio="true">
+                <image>
+                    <Image url="@../images/squad_logo.png"/>
+                </image>
+            </ImageView>
+
+            <Hyperlink text="Página Inicial" fx:id="btnPaginaInicial" styleClass="hyperlink-topo"/>
+            <Hyperlink text="Marcar Manutenção" fx:id="btnNovaManutencaoTopo" styleClass="hyperlink-topo"/>
+            <Hyperlink text="Calendário" fx:id="btnCalendarioTopo" styleClass="hyperlink-topo"/>
+
+            <Region fx:id="espacador" HBox.hgrow="ALWAYS"/>
+            <Hyperlink text="Logout" onAction="#logout" styleClass="hyperlink-topo"/>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox spacing="20" alignment="TOP_CENTER" style="-fx-padding: 20;">
+            <Label text="Gestão de Manutenções" styleClass="titulo"/>
+
+            <HBox alignment="CENTER_RIGHT" prefWidth="800">
+                <Button fx:id="btnNovaManutencao" text="Marcar Nova Manutenção"
+                        onAction="#marcarNovaManutencao" styleClass="botao-criar"/>
+            </HBox>
+
+            <TableView fx:id="tabelaManutencoes" prefHeight="400" prefWidth="800" styleClass="table-view">
+                <columns>
+                    <TableColumn fx:id="colunaEspaco" text="Espaço" prefWidth="140"/>
+                    <TableColumn fx:id="colunaDescricao" text="Descrição" prefWidth="180"/>
+                    <TableColumn fx:id="colunaDataInicio" text="Data Início" prefWidth="130"/>
+                    <TableColumn fx:id="colunaDataFim" text="Data Fim" prefWidth="130"/>
+                    <TableColumn fx:id="colunaEstado" text="Estado" prefWidth="100"/>
+                    <TableColumn fx:id="colunaAcoes" text="Ações" prefWidth="160"/>
+                </columns>
+            </TableView>
+
+        </VBox>
+    </center>
+
+</BorderPane>

@@ -19,7 +19,7 @@ import java.util.List;
 
 public class NotificacaoService {
 
-    private static final String BASE_URL = "http://localhost:8080/notificacoes";
+    private static final String BASE_URL = "http://localhost:8080/api/notificacoes";
     private final HttpClient client;
     private final Gson gson;
 

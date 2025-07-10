@@ -1,14 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
+<BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.frontendjavafx.DashboardManutencao"
-            prefHeight="400.0" prefWidth="600.0">
+            fx:controller="com.example.frontendjavafx.controllers.manutencao.DashboardManutencaoController"
+            style="-fx-background-color: linear-gradient(to bottom, black, darkred);"
+            stylesheets="@styles/dashboard_manutencao.css">
 
-</AnchorPane>
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20" prefHeight="60" styleClass="top-bar">
+            <padding><Insets top="10" bottom="10" left="30" right="30"/></padding>
+
+            <HBox spacing="20" alignment="CENTER_LEFT">
+                <ImageView fitWidth="40" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/squad_logo.png"/>
+                    </image>
+                </ImageView>
+
+                <Hyperlink text="Página Inicial" fx:id="btnPaginaInicial" styleClass="top-link"/>
+                <Hyperlink text="Marcar Manutenção" fx:id="btnNovaManutencaoTopo" styleClass="top-link"/>
+                <Hyperlink text="Calendário" fx:id="btnCalendarioTopo" styleClass="top-link"/>
+            </HBox>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <HBox spacing="10" alignment="CENTER_RIGHT">
+                <Label text="Bem-vindo, Equipa de Manutenção!" styleClass="top-label"/>
+                <Hyperlink text="Logout" onAction="#logout" styleClass="top-link"/>
+            </HBox>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox alignment="TOP_CENTER" spacing="25" styleClass="main-content">
+
+            <Label text="Painel da Manutenção" styleClass="main-title"/>
+            <Label text="Gere as intervenções, estados e calendário de manutenção dos espaços." styleClass="main-subtitle"/>
+            <Region minHeight="30"/>
+
+            <HBox spacing="40" alignment="CENTER">
+
+                <VBox spacing="10" alignment="CENTER" styleClass="card">
+                    <Label text="Marcar Manutenção" styleClass="card-title"/>
+                    <Label text="Indique datas e espaços a intervencionar." wrapText="true" maxWidth="200" styleClass="card-text"/>
+                    <Button fx:id="btnNovaManutencao" text="Ver" styleClass="card-button"/>
+                </VBox>
+
+                <VBox spacing="10" alignment="CENTER" styleClass="card">
+                    <Label text="Ver Calendário" styleClass="card-title"/>
+                    <Label text="Consulte todas as manutenções agendadas." wrapText="true" maxWidth="200" styleClass="card-text"/>
+                    <Button fx:id="btnCalendario" text="Ver" styleClass="card-button"/>
+                </VBox>
+
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>

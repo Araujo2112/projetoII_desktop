@@ -19,7 +19,7 @@ import java.util.List;
 
 public class ManutencaoService {
 
-    private static final String BASE_URL = "http://localhost:8080/manutencoes";
+    private static final String BASE_URL = "http://localhost:8080/api/manutencoes";
     private final HttpClient client;
     private final Gson gson;
 
@@ -53,7 +53,7 @@ public class ManutencaoService {
         return gson.fromJson(response.body(), Manutencao.class);
     }
 
-    public Manutencao createManutencao(Manutencao manutencao) throws IOException, InterruptedException {
+    public void createManutencao(Manutencao manutencao) throws IOException, InterruptedException {
         String json = gson.toJson(manutencao);
 
         HttpRequest request = HttpRequest.newBuilder()
@@ -63,7 +63,12 @@ public class ManutencaoService {
                 .build();
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        return gson.fromJson(response.body(), Manutencao.class);
+
+        int statusCode = response.statusCode();
+
+        if (statusCode != 200 && statusCode != 201) {
+            throw new IOException("Erro do servidor: " + response.body());
+        }
     }
 
     public Manutencao updateManutencao(Integer id, Manutencao manutencao) throws IOException, InterruptedException {

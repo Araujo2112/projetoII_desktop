@@ -11,7 +11,7 @@ import java.net.http.*;
 import java.util.List;
 
 public class TipoRelatorioService {
-    private static final String BASE_URL = "http://localhost:8080/tipo-relatorio";
+    private static final String BASE_URL = "http://localhost:8080/api/tipo-relatorio";
     private final HttpClient client;
     private final Gson gson;
 

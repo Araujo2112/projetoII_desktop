@@ -43,7 +43,6 @@ public class EditarEspacoController {
     public void setEspaco(EspacoDesportivo espaco) {
         this.espacoAtual = espaco;
 
-        // Preenche os campos com os dados atuais
         txtLote.setText(espaco.getLote());
         txtCapacidade.setText(String.valueOf(espaco.getCapacidade()));
         txtPrecoHora.setText(espaco.getPrecoHora().toString());

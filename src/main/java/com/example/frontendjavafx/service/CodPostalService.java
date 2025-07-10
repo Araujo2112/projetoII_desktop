@@ -19,7 +19,7 @@ import java.util.List;
 
 public class CodPostalService {
 
-    private static final String BASE_URL = "http://localhost:8080/cod-postais";
+    private static final String BASE_URL = "http://localhost:8080/api/cod-postais";
     private final HttpClient client;
     private final Gson gson;
 

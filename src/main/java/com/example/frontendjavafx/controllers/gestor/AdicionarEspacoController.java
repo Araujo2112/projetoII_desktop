@@ -69,7 +69,7 @@ public class AdicionarEspacoController {
             novoEspaco.setPrecoHora(precoHora);
             novoEspaco.setHoraAbertura(horaAbertura);
             novoEspaco.setHoraFecho(horaFecho);
-            novoEspaco.setDisponibilidade(true); // Sempre disponível por padrão
+            novoEspaco.setDisponibilidade(true);
             novoEspaco.setTipoEspaco(tipoSelecionado);
 
             espacoDesportivoService.createEspaco(novoEspaco);

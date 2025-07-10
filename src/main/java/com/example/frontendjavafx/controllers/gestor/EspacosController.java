@@ -104,7 +104,7 @@ public class EspacosController implements Initializable {
                         stage.setScene(scene);
                         stage.showAndWait();
 
-                        carregarEspacos(); // Recarrega a tabela depois de editar
+                        carregarEspacos();
 
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -141,7 +141,7 @@ public class EspacosController implements Initializable {
             if (resposta == ButtonType.OK) {
                 try {
                     espacoDesportivoService.deleteEspaco(espaco.getIdEspaco());
-                    carregarEspacos(); // Atualiza tabela depois de apagar
+                    carregarEspacos();
                 } catch (IOException | InterruptedException e) {
                     e.printStackTrace();
                     mostrarErro("Erro ao eliminar espaço: " + e.getMessage());
@@ -168,7 +168,7 @@ public class EspacosController implements Initializable {
             stage.setScene(scene);
             stage.showAndWait();
 
-            carregarEspacos(); // Atualiza tabela depois de adicionar
+            carregarEspacos();
         } catch (IOException e) {
             e.printStackTrace();
         }

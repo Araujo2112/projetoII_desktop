@@ -21,7 +21,7 @@ import java.util.List;
 
 public class UsuarioService {
 
-    private static final String BASE_URL = "http://localhost:8080/users";
+    private static final String BASE_URL = "http://localhost:8080/api/users";
     private final HttpClient client;
     private final Gson gson;
 

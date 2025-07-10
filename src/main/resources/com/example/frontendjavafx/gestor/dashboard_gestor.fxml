@@ -12,7 +12,6 @@
             style="-fx-background-color: linear-gradient(to bottom, black, darkred);"
             stylesheets="@styles/dashboard_gestor.css">
 
-    <!-- TOPO -->
     <top>
         <HBox alignment="CENTER_LEFT" spacing="20" prefHeight="60" styleClass="top-bar">
             <padding><Insets top="10" bottom="10" left="30" right="30"/></padding>
@@ -39,7 +38,6 @@
         </HBox>
     </top>
 
-    <!-- CENTRO -->
     <center>
         <VBox alignment="TOP_CENTER" spacing="25" styleClass="main-content">
 

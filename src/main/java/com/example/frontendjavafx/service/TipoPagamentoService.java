@@ -19,7 +19,7 @@ import java.util.List;
 
 public class TipoPagamentoService {
 
-    private static final String BASE_URL = "http://localhost:8080/tipo-pagamentos";
+    private static final String BASE_URL = "http://localhost:8080/api/tipo-pagamentos";
     private final HttpClient client;
     private final Gson gson;
 

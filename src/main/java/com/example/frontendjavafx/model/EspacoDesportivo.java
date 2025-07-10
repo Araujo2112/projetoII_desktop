@@ -88,4 +88,9 @@ public class EspacoDesportivo {
     public void setTipoEspaco(TipoEspacoDesportivo tipoEspaco) {
         this.tipoEspaco = tipoEspaco;
     }
+
+    @Override
+    public String toString() {
+        return lote;
+    }
 }

@@ -19,7 +19,7 @@ import java.util.List;
 
 public class EspacoDesportivoService {
 
-    private static final String BASE_URL = "http://localhost:8080/espacos-desportivos";
+    private static final String BASE_URL = "http://localhost:8080/api/espacos-desportivos";
     private final HttpClient client;
     private final Gson gson;
 

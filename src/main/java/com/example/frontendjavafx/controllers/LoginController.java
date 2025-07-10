@@ -13,11 +13,8 @@ public class LoginController {
 
     @FXML
     private void login() {
-        // Simulação de login como gestor
-        DashboardRouter.openDashboard("gestor");
-
-        // Para testar outros, basta trocar a string:
+        //DashboardRouter.openDashboard("gestor");
         // DashboardRouter.openDashboard("rececionista");
-        // DashboardRouter.openDashboard("manutencao");
+        DashboardRouter.openDashboard("manutencao");
     }
 }
