@@ -92,4 +92,17 @@ public class ManutencaoService {
 
         client.send(request, HttpResponse.BodyHandlers.discarding());
     }
+
+    public List<Manutencao> buscarManutencaoEntreDatas(LocalDate dataInicio, LocalDate dataFim) throws IOException, InterruptedException {
+        String url = BASE_URL + "/data/" + dataInicio.toString() + "/" + dataFim.toString();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .GET()
+                .build();
+
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        Type listType = new TypeToken<List<Manutencao>>(){}.getType();
+        return gson.fromJson(response.body(), listType);
+    }
 }

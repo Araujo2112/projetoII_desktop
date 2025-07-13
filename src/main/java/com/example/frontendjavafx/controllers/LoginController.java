@@ -13,8 +13,8 @@ public class LoginController {
 
     @FXML
     private void login() {
-        //DashboardRouter.openDashboard("gestor");
-        // DashboardRouter.openDashboard("rececionista");
-        DashboardRouter.openDashboard("manutencao");
+        // DashboardRouter.openDashboard("gestor");
+        DashboardRouter.openDashboard("rececionista");
+        // DashboardRouter.openDashboard("manutencao");
     }
 }

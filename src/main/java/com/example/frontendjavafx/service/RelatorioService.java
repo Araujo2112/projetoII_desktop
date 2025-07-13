@@ -1,5 +1,6 @@
 package com.example.frontendjavafx.service;
 
+import com.example.frontendjavafx.dto.RelatorioEspacoDTO;
 import com.example.frontendjavafx.model.Relatorio;
 import com.example.frontendjavafx.utils.LocalDateAdapter;
 import com.google.gson.Gson;
@@ -41,6 +42,41 @@ public class RelatorioService {
         return gson.fromJson(response.body(), listType);
     }
 
+    public List<Relatorio> getRelatoriosByTipo(int tipoId) throws IOException, InterruptedException {
+        String url = BASE_URL + "/tipo/" + tipoId;
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .GET()
+                .build();
+
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        if (response.statusCode() != 200) {
+            throw new RuntimeException("Erro ao buscar relatórios filtrados: " + response.statusCode());
+        }
+
+        Type listType = new TypeToken<List<Relatorio>>(){}.getType();
+        return gson.fromJson(response.body(), listType);
+    }
+
+    public List<RelatorioEspacoDTO> getRelatorioUtilizacao(LocalDate de, LocalDate ate) throws IOException, InterruptedException {
+        String url = BASE_URL + "/utilizacao?de=" + de + "&ate=" + ate;
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .GET()
+                .build();
+
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        if (response.statusCode() != 200) {
+            throw new RuntimeException("Erro ao obter relatório de utilização: " + response.body());
+        }
+
+        Type listType = new TypeToken<List<RelatorioEspacoDTO>>(){}.getType();
+        return gson.fromJson(response.body(), listType);
+    }
+
     public void gerarFaturacao(LocalDate de, LocalDate ate) throws IOException, InterruptedException {
         String url = BASE_URL + "/faturacao?de=" + de + "&ate=" + ate;
         HttpRequest request = HttpRequest.newBuilder()
@@ -53,6 +89,23 @@ public class RelatorioService {
         if (response.statusCode() != 200) {
             throw new RuntimeException("Erro ao gerar relatório: " + response.body());
         }
+    }
+
+    public void gerarRelatorioUtilizacao(LocalDate de, LocalDate ate) throws IOException, InterruptedException {
+        String url = BASE_URL + "/utilizacao?de=" + de + "&ate=" + ate;
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .POST(HttpRequest.BodyPublishers.noBody())
+                .build();
+
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        if (response.statusCode() != 200) {
+            throw new RuntimeException("Erro ao gerar relatório de utilização: " + response.body());
+        }
+
+        Type listType = new TypeToken<List<RelatorioEspacoDTO>>(){}.getType();
+        gson.fromJson(response.body(), listType);
     }
 
     public void delete(Integer id) throws IOException, InterruptedException {

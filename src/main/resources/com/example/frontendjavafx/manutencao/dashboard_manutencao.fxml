@@ -9,7 +9,6 @@
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.frontendjavafx.controllers.manutencao.DashboardManutencaoController"
-            style="-fx-background-color: linear-gradient(to bottom, black, darkred);"
             stylesheets="@styles/dashboard_manutencao.css">
 
     <top>

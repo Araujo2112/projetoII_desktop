@@ -1,9 +1,13 @@
-package com.example.frontendjavafx.controllers.gestor;
+package com.example.frontendjavafx.controllers.rececionista;
 
+import com.example.frontendjavafx.dto.RelatorioEspacoDTO;
 import com.example.frontendjavafx.model.Relatorio;
 import com.example.frontendjavafx.service.RelatorioService;
 import com.example.frontendjavafx.utils.SceneManager;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -15,9 +19,8 @@ import java.awt.Desktop;
 import java.net.URI;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class RelatoriosController {
+public class RelatoriosDesportivosController {
 
     @FXML private TableView<Relatorio> tabelaRelatorios;
     @FXML private TableColumn<Relatorio, Integer> colId;
@@ -28,19 +31,17 @@ public class RelatoriosController {
     @FXML private DatePicker dataInicioPicker;
     @FXML private DatePicker dataFimPicker;
     @FXML private Hyperlink btnPaginaInicial;
-    @FXML private Hyperlink btnEspacosTopo;
-    @FXML private Hyperlink btnPagamentosTopo;
-    @FXML private Hyperlink btnRelatoriosTopo;
+    @FXML private Hyperlink btnVerReservasTopo;
+    @FXML private Hyperlink btnGerirRelatoriosTopo;
 
     private final ObservableList<Relatorio> listaRelatorios = FXCollections.observableArrayList();
     private final RelatorioService relatorioService = new RelatorioService();
 
     @FXML
     public void initialize() {
-        btnPaginaInicial.setOnAction(e -> SceneManager.switchScene("gestor/dashboard_gestor.fxml"));
-        btnEspacosTopo.setOnAction(e -> SceneManager.switchScene("gestor/espacos.fxml"));
-        btnPagamentosTopo.setOnAction(e -> SceneManager.switchScene("gestor/pagamentos.fxml"));
-        btnRelatoriosTopo.setOnAction(e -> SceneManager.switchScene("gestor/relatorios.fxml"));
+        btnPaginaInicial.setOnAction(e -> SceneManager.switchScene("rececionista/dashboard_rececionista.fxml"));
+        btnVerReservasTopo.setOnAction(e -> SceneManager.switchScene("rececionista/gerir_reservas.fxml"));
+        btnGerirRelatoriosTopo.setOnAction(e -> SceneManager.switchScene("rececionista/relatorios_desportivos.fxml"));
 
         configurarTabela();
         carregarRelatorios();
@@ -81,11 +82,7 @@ public class RelatoriosController {
     private void carregarRelatorios() {
         new Thread(() -> {
             try {
-                List<Relatorio> relatorios = relatorioService.getAll();
-
-                List<Relatorio> relatoriosFiltrados = relatorios.stream()
-                        .filter(relatorio -> relatorio.getIdTipo() != null && relatorio.getIdTipo().getId() == 2)
-                        .toList();
+                List<Relatorio> relatoriosFiltrados = relatorioService.getRelatoriosByTipo(2);
 
                 Platform.runLater(() -> {
                     listaRelatorios.clear();
@@ -97,6 +94,7 @@ public class RelatoriosController {
             }
         }).start();
     }
+
 
 
     @FXML
@@ -111,7 +109,7 @@ public class RelatoriosController {
 
         new Thread(() -> {
             try {
-                relatorioService.gerarFaturacao(inicio, fim);
+                relatorioService.gerarRelatorioUtilizacao(inicio, fim);
                 Platform.runLater(() -> {
                     mostrarAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Relatório gerado com sucesso!");
                     carregarRelatorios();
@@ -121,6 +119,16 @@ public class RelatoriosController {
                 mostrarAlerta(Alert.AlertType.ERROR, "Erro", "Erro ao gerar relatório.");
             }
         }).start();
+    }
+
+    private void abrirPDF(Integer id) {
+        try {
+            String url = "http://localhost:8080/api/relatorios/download/" + id;
+            Desktop.getDesktop().browse(new URI(url));
+        } catch (Exception e) {
+            e.printStackTrace();
+            mostrarAlerta(Alert.AlertType.ERROR, "Erro", "Não foi possível abrir o PDF.");
+        }
     }
 
     private void eliminarRelatorio(Integer id) {
@@ -136,16 +144,6 @@ public class RelatoriosController {
                 mostrarAlerta(Alert.AlertType.ERROR, "Erro", "Erro ao eliminar relatório.");
             }
         }).start();
-    }
-
-    private void abrirPDF(Integer id) {
-        try {
-            String url = "http://localhost:8080/api/relatorios/download/" + id;
-            Desktop.getDesktop().browse(new URI(url));
-        } catch (Exception e) {
-            e.printStackTrace();
-            mostrarAlerta(Alert.AlertType.ERROR, "Erro", "Não foi possível abrir o PDF.");
-        }
     }
 
     private void mostrarAlerta(Alert.AlertType tipo, String titulo, String msg) {

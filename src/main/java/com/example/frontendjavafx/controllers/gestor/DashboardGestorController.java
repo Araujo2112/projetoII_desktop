@@ -25,7 +25,7 @@ public class DashboardGestorController {
         btnRelatorios.setOnAction(e -> SceneManager.switchScene("gestor/relatorios.fxml"));
 
         btnPaginaInicial.setOnAction(e -> SceneManager.switchScene("gestor/dashboard_gestor.fxml"));
-        btnRelatoriosTopo.setOnAction(e -> SceneManager.switchScene("gestor/relatorios.fxml"));
+        btnRelatoriosTopo.setOnAction(e -> SceneManager.switchScene("gestor/relatorios_desportivos.fxml"));
         btnEspacosTopo.setOnAction(e -> SceneManager.switchScene("gestor/espacos.fxml"));
         btnPagamentosTopo.setOnAction(e -> SceneManager.switchScene("gestor/pagamentos.fxml"));
     }

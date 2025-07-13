@@ -87,4 +87,16 @@ public class PagamentoService {
 
         client.send(request, HttpResponse.BodyHandlers.discarding());
     }
+
+    public Pagamento getPagamentoPorReserva(Integer idReserva) throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(BASE_URL + "/reserva/" + idReserva))
+                .GET()
+                .build();
+
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        return gson.fromJson(response.body(), Pagamento.class);
+    }
+
 }

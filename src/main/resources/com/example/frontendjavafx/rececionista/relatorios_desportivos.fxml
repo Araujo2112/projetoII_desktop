@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.frontendjavafx.controllers.rececionista.RelatoriosDesportivosController"
+            stylesheets="@styles/relatorios.css">
+
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20" prefHeight="60" styleClass="top-bar">
+            <padding><Insets top="10" bottom="10" left="30" right="30"/></padding>
+
+            <HBox spacing="20" alignment="CENTER_LEFT">
+                <ImageView fitWidth="40" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/squad_logo.png"/>
+                    </image>
+                </ImageView>
+                <Hyperlink text="Página Inicial" fx:id="btnPaginaInicial" styleClass="top-link"/>
+                <Hyperlink text="Ver Reservas" fx:id="btnVerReservasTopo" styleClass="top-link"/>
+                <Hyperlink text="Gerir Relatórios" fx:id="btnGerirRelatoriosTopo" styleClass="top-link"/>
+            </HBox>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <HBox spacing="10" alignment="CENTER_RIGHT">
+                <Label text="Bem-vindo, Bixoman!" styleClass="top-label"/>
+                <Hyperlink text="Logout" onAction="#logout" styleClass="top-link"/>
+            </HBox>
+
+        </HBox>
+    </top>
+
+    <center>
+        <VBox alignment="TOP_CENTER" spacing="20" style="-fx-padding: 40 30 30 30;">
+            <Label text="Relatórios de Utilização de Espaços Desportivos" styleClass="titulo"/>
+
+            <HBox spacing="10" alignment="CENTER_RIGHT">
+                <Label text="Data Início:" style="-fx-text-fill: white;" />
+                <DatePicker fx:id="dataInicioPicker" />
+
+                <Label text="Data Fim:" style="-fx-text-fill: white;" />
+                <DatePicker fx:id="dataFimPicker" />
+
+                <Button text="Gerar Relatório"
+                        fx:id="botaoGerar"
+                        onAction="#gerarRelatorio"
+                        styleClass="botao-criar"/>
+            </HBox>
+
+            <TableView fx:id="tabelaRelatorios" prefHeight="400" styleClass="table-view">
+                <columns>
+                    <TableColumn fx:id="colId" text="ID" prefWidth="80"/>
+                    <TableColumn fx:id="colDataCriacao" text="Data Criação" prefWidth="140"/>
+                    <TableColumn fx:id="colTipo" text="Tipo de Relatório" prefWidth="180"/>
+                    <TableColumn fx:id="colAcoes" text="Ações" prefWidth="200"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+
+</BorderPane>

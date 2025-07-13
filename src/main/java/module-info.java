@@ -16,6 +16,7 @@ module com.example.frontendjavafx {
     opens com.example.frontendjavafx.utils to javafx.fxml;
     opens com.example.frontendjavafx.controllers.gestor to javafx.fxml;
     opens com.example.frontendjavafx.controllers.manutencao to javafx.fxml;
+    opens com.example.frontendjavafx.controllers.rececionista to javafx.fxml;
 
     opens com.example.frontendjavafx.dto to com.google.gson, com.fasterxml.jackson.databind;
 

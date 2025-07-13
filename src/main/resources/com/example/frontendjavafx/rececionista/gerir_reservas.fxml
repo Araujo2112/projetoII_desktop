@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="root" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.frontendjavafx.controllers.rececionista.GerirReservaController"
+            stylesheets="@styles/gerir_reserva.css">
+
+    <top>
+        <HBox spacing="20" alignment="CENTER_LEFT" style="-fx-padding: 20;" BorderPane.alignment="CENTER">
+            <ImageView fitWidth="40" preserveRatio="true">
+                <image>
+                    <Image url="@../images/squad_logo.png"/>
+                </image>
+            </ImageView>
+
+            <Hyperlink text="Página Inicial" fx:id="btnPaginaInicial" styleClass="hyperlink-topo"/>
+            <Hyperlink text="Ver Reservas" fx:id="btnGerirReservasTopo" styleClass="hyperlink-topo"/>
+            <Hyperlink text="Gerir Relatorios" fx:id="btnGerirRelatoriosTopo" styleClass="hyperlink-topo"/>
+
+            <Region fx:id="espacador" HBox.hgrow="ALWAYS"/>
+            <Hyperlink text="Logout" onAction="#logout" styleClass="hyperlink-topo"/>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox spacing="20" alignment="TOP_CENTER" style="-fx-padding: 20;">
+            <Label text="Gestão de Reservas" styleClass="titulo"/>
+
+            <TableView fx:id="tabelaReservas" prefHeight="400" prefWidth="800" styleClass="table-view">
+                <columns>
+                    <TableColumn fx:id="colunaEspaco" text="Espaço" prefWidth="140"/>
+                    <TableColumn fx:id="colunaData" text="Data" prefWidth="130"/>
+                    <TableColumn fx:id="colunaHoraInicio" text="Hora Início" prefWidth="130"/>
+                    <TableColumn fx:id="colunaHoraFim" text="Hora Fim" prefWidth="130"/>
+                    <TableColumn fx:id="colunaUsuario" text="Usuário" prefWidth="150"/>
+                    <TableColumn fx:id="colunaEstadoPagamento" text="Estado do Pagamento" prefWidth="150"/>
+                    <TableColumn fx:id="colunaAcoes" text="Ações" prefWidth="250"/>
+                </columns>
+            </TableView>
+
+        </VBox>
+    </center>
+
+</BorderPane>
+
+

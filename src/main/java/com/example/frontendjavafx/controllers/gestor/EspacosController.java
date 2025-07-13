@@ -178,7 +178,7 @@ public class EspacosController implements Initializable {
     private void abrirDashboard() { SceneManager.switchScene("gestor/dashboard_gestor.fxml"); }
 
     @FXML
-    private void abrirRelatorios() { SceneManager.switchScene("gestor/relatorios.fxml"); }
+    private void abrirRelatorios() { SceneManager.switchScene("gestor/relatorios_desportivos.fxml"); }
 
     @FXML
     private void abrirEspacos() { SceneManager.switchScene("gestor/espacos.fxml"); }

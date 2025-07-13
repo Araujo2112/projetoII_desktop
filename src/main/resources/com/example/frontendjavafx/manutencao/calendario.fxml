@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Button?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.frontendjavafx.controllers.manutencao.CalendarioController"
+            stylesheets="@styles/calendario.css">
+
+    <top>
+        <HBox spacing="20" alignment="CENTER_LEFT" style="-fx-padding: 20;">
+            <ImageView fitWidth="40" preserveRatio="true">
+                <image>
+                    <Image url="@../images/squad_logo.png"/>
+                </image>
+            </ImageView>
+
+            <Hyperlink text="Página Inicial" fx:id="btnPaginaInicial" styleClass="hyperlink-topo"/>
+            <Hyperlink text="Marcar Manutenção" fx:id="btnNovaManutencaoTopo" styleClass="hyperlink-topo"/>
+            <Hyperlink text="Calendário" fx:id="btnCalendarioTopo" styleClass="hyperlink-topo"/>
+
+            <Region fx:id="espacador" HBox.hgrow="ALWAYS"/>
+            <Hyperlink text="Logout" onAction="#logout" styleClass="hyperlink-topo"/>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox spacing="20" alignment="TOP_CENTER" style="-fx-padding: 20;">
+            <Label text="Calendário de Manutenções" styleClass="titulo"/>
+
+            <HBox spacing="10" alignment="CENTER_RIGHT">
+                <DatePicker fx:id="dataInicioPicker" promptText="Data Início"/>
+                <DatePicker fx:id="dataFimPicker" promptText="Data Fim"/>
+                <Button text="Procurar" onAction="#procurarManutencaoPorDatas" />
+            </HBox>
+
+            <TableView fx:id="tabelaManutencoes" prefHeight="400" prefWidth="800" styleClass="table-view">
+                <columns>
+                    <TableColumn fx:id="colunaEspaco" text="Espaço" prefWidth="140"/>
+                    <TableColumn fx:id="colunaDescricao" text="Descrição" prefWidth="180"/>
+                    <TableColumn fx:id="colunaDataInicio" text="Data Início" prefWidth="130"/>
+                    <TableColumn fx:id="colunaDataFim" text="Data Fim" prefWidth="130"/>
+                    <TableColumn fx:id="colunaCusto" text="Custo" prefWidth="130"/>
+                </columns>
+            </TableView>
+
+        </VBox>
+    </center>
+
+</BorderPane>

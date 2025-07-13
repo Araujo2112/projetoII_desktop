@@ -49,7 +49,7 @@ public class PagamentosController implements Initializable {
         btnPaginaInicial.setOnAction(e -> SceneManager.switchScene("gestor/dashboard_gestor.fxml"));
         btnEspacosTopo.setOnAction(e -> SceneManager.switchScene("gestor/espacos.fxml"));
         btnPagamentosTopo.setOnAction(e -> SceneManager.switchScene("gestor/pagamentos.fxml"));
-        btnRelatoriosTopo.setOnAction(e -> SceneManager.switchScene("gestor/relatorios.fxml"));
+        btnRelatoriosTopo.setOnAction(e -> SceneManager.switchScene("gestor/relatorios_desportivos.fxml"));
     }
 
     private void configurarColunas() {
