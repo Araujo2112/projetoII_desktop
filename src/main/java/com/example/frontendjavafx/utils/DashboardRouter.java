@@ -9,7 +9,7 @@ public class DashboardRouter {
             case "rececionista":
                 SceneManager.switchScene("rececionista/dashboard_rececionista.fxml");
                 break;
-            case "manutencao":
+            case "técnico de manutenção":
                 SceneManager.switchScene("manutencao/dashboard_manutencao.fxml");
                 break;
             default:

@@ -12,7 +12,6 @@
            fx:controller="com.example.frontendjavafx.controllers.LoginController"
            style="-fx-background-color: linear-gradient(to bottom, #7c0c0c, #3d0000);">
 
-    <!-- LOGO -->
     <ImageView fitWidth="100" preserveRatio="true" StackPane.alignment="TOP_LEFT">
         <StackPane.margin>
             <Insets top="20" left="20"/>
@@ -22,7 +21,6 @@
         </image>
     </ImageView>
 
-    <!-- CAIXA CENTRAL -->
     <VBox spacing="20" alignment="CENTER"
           style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 40; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 2);"
           maxWidth="380" maxHeight="480">
@@ -30,7 +28,6 @@
         <Label text="Login na conta"
                style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
 
-        <!-- Botões Google e Facebook -->
         <HBox spacing="10" alignment="CENTER">
             <Button graphicTextGap="10" maxWidth="160"
                     style="-fx-background-color: #e8f0fe; -fx-font-size: 14px;">
@@ -59,10 +56,8 @@
 
         <Label text="Ou" style="-fx-text-fill: gray; -fx-font-size: 12px;" />
 
-        <!-- Email -->
         <TextField promptText="Insira seu email" fx:id="emailField" maxWidth="300"/>
 
-        <!-- Esqueceu + Password -->
         <VBox spacing="5" maxWidth="300">
             <HBox alignment="TOP_RIGHT">
                 <Hyperlink text="Esqueceu ?" style="-fx-font-size: 11px;"/>
@@ -71,7 +66,7 @@
         </VBox>
 
         <Button text="Login"
-                onAction="#login"
+                onAction="#handleLogin"
                 style="-fx-background-color: #007bff; -fx-text-fill: white; -fx-font-size: 14px;"
                 maxWidth="300"/>
 
@@ -81,3 +76,4 @@
         </HBox>
     </VBox>
 </StackPane>
+

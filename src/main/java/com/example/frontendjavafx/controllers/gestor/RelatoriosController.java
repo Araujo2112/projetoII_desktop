@@ -15,7 +15,6 @@ import java.awt.Desktop;
 import java.net.URI;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class RelatoriosController {
 
@@ -82,14 +81,9 @@ public class RelatoriosController {
         new Thread(() -> {
             try {
                 List<Relatorio> relatorios = relatorioService.getAll();
-
-                List<Relatorio> relatoriosFiltrados = relatorios.stream()
-                        .filter(relatorio -> relatorio.getIdTipo() != null && relatorio.getIdTipo().getId() == 2)
-                        .toList();
-
                 Platform.runLater(() -> {
                     listaRelatorios.clear();
-                    listaRelatorios.addAll(relatoriosFiltrados);
+                    listaRelatorios.addAll(relatorios);
                 });
             } catch (Exception e) {
                 e.printStackTrace();
@@ -97,7 +91,6 @@ public class RelatoriosController {
             }
         }).start();
     }
-
 
     @FXML
     private void gerarRelatorio() {
